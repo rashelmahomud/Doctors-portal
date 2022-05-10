@@ -8,8 +8,8 @@ const TestimonialInfo = ({ testi }) => {
             </div>
             <div className='flex mt-5'>
 
-                <div class="avatar">
-                    <div class="w-20 mr-5 rounded-full ring ring-primary ring-offset-base-100 ">
+                <div className="avatar">
+                    <div className="w-20 mr-5 rounded-full ring ring-primary ring-offset-base-100 ">
                         <img src="https://api.lorem.space/image/face?hash=3174" />
                     </div>
                 </div>

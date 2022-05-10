@@ -5,6 +5,7 @@ import MakeAppoinment from '../../Pages/MakeAppoinment/MakeAppoinment';
 import Service from '../../Pages/Services/Service';
 import Testimonial from '../../Pages/Testimonial/Testimonial';
 import ContactUs from '../ContactUs/ContactUs';
+import Footer from '../Footer/Footer';
 import Banner from './Banner';
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
             <MakeAppoinment></MakeAppoinment>
             <Testimonial></Testimonial>
             <ContactUs></ContactUs>
+            <Footer></Footer>
         </div>
     );
 };
