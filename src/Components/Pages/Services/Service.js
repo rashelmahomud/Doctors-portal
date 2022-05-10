@@ -1,7 +1,9 @@
 import React from 'react';
+import ServiceInfo from '../../Pages/Services/ServiceInfo/ServiceInfo';
 import cavity from '../../../assets/images/cavity.png';
 import flouride from '../../../assets/images/fluoride.png';
 import whiteining from '../../../assets/images/whitening.png';
+
 
 const Service = () => {
     const servces = [
@@ -30,11 +32,15 @@ const Service = () => {
                 <h1 className='text-primary text-xl font-bold'>OUR SERVICES</h1>
                 <h1 className='text-5xl font-bold'>Services We Provide</h1>
             </div>
+            
 
-            <div>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-5 my-10'>
                 
             {
-                servces.map(service => <serviceInfo></serviceInfo> )
+                servces.map(service => <ServiceInfo 
+                    key={service._id}
+                    service={service}
+                ></ServiceInfo> )
             }
 
             </div>
