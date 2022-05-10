@@ -10,7 +10,7 @@ const MakeAppoinment = () => {
             }}
             className='flex my-40'>
             <div className='flex-1'>
-                <img className='mt-[-200px] hidden lg:block ' src={img} alt="" />
+                <img className='mt-[-160px] hidden lg:block ' src={img} alt="" />
             </div>
             <div className='flex-1 my-10 lg:my-20 mx-5'>
                 <h1 className='text-primary font-bold text-2xl my-5'>Appoinment</h1>
