@@ -4,6 +4,7 @@ import Info from '../../Pages/Info/Info';
 import MakeAppoinment from '../../Pages/MakeAppoinment/MakeAppoinment';
 import Service from '../../Pages/Services/Service';
 import Testimonial from '../../Pages/Testimonial/Testimonial';
+import ContactUs from '../ContactUs/ContactUs';
 import Banner from './Banner';
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
             <Health></Health>
             <MakeAppoinment></MakeAppoinment>
             <Testimonial></Testimonial>
+            <ContactUs></ContactUs>
         </div>
     );
 };
