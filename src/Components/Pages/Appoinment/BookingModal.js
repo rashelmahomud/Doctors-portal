@@ -1,13 +1,14 @@
 import { format } from 'date-fns';
 import React from 'react';
 
-const BookingModal = ({ date, titment }) => {
-    const { name, slots } = titment;
+const BookingModal = ({ date, titment, setTitment }) => {
+    const { _id, name, slots } = titment;
 
     const handelSubmite = event => {
         event.preventDefault();
-        const solt = event.target.solt.value;
-        console.log(solt);
+        const slot = event.target.slot.value;
+        console.log(_id,slot,name);
+        setTitment();
     }
     return (
         <div>
@@ -19,17 +20,17 @@ const BookingModal = ({ date, titment }) => {
 
                     <form onSubmit={handelSubmite}>
                         <input type="text" value={format(date, 'PP')} class="input input-bordered w-full max-w-xs my-3 required" />
-                        <select class="select select-bordered w-full max-w-xs">
+                        <select name='slot' class="select select-bordered w-full max-w-xs">
                         
                             {
                                 slots.map(slot => <option value={slot}>{slot}</option>)
                             }
                         </select>
 
-                        <input type="text" placeholder="Name" class="input input-bordered w-full max-w-xs required" />
-                        <input type="Number" placeholder="Phone Number" class="input input-bordered w-full max-w-xs my-3 required" />
-                        <input type="Email" placeholder="Email" class="input input-bordered w-full max-w-xs my-3 required" />
-                        <input type="submit" value='submit' placeholder="Email" class="input btn btn-secondary input-bordered w-full max-w-xs required" />
+                        <input type="text" name='name' placeholder="Name" class="input input-bordered w-full max-w-xs required" />
+                        <input type="Number" name='number' placeholder="Phone Number" class="input input-bordered w-full max-w-xs my-3 required" />
+                        <input type="email" name='email' placeholder="Email" class="input input-bordered w-full max-w-xs my-3 required" />
+                        <input type='submit' name='submit' value='submit' placeholder="Email" class="input btn btn-secondary input-bordered w-full max-w-xs required" />
                     </form>
                 </div>
             </div>
