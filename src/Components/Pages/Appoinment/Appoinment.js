@@ -13,10 +13,10 @@ const Appoinment = ({date,setDate}) => {
                     background: `url(${chairBg})`
                 }}
 
-                class="hero min-h-screen ">
-                <div class="hero-content flex-col lg:flex-row-reverse">
+                className="hero min-h-screen ">
+                <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className='px-5 lg:px-20'>
-                        <img src={chair} class="max-w-sm rounded-lg shadow-2xl" alt='' />
+                        <img src={chair} className="max-w-sm rounded-lg shadow-2xl" alt='' />
                     </div>
                     <div className='px-5 lg:px-20 '>
 
