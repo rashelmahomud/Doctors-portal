@@ -3,11 +3,11 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 
-const BookingModal = ({ date, titment, setTitment }) => {
+const BookingModal = ({ date, titment, setTitment,refetch }) => {
     const { _id, name, slots } = titment;
     const [user, loading, error] = useAuthState(auth);
 
-    const formattedDate = format(date, 'pp');
+    const formattedDate = format(date, 'PP');
     const handelSubmite = event => {
         event.preventDefault();
         const slot = event.target.slot.value;
@@ -15,7 +15,7 @@ const BookingModal = ({ date, titment, setTitment }) => {
         const booking = {
             treatmentId: _id,
             treatment: name,
-            data: formattedDate,
+            date: formattedDate,
             slot,
             patient: user.email,
             patientName: user.displayName,
@@ -37,13 +37,11 @@ const BookingModal = ({ date, titment, setTitment }) => {
                     alert(`appoinment is set, ${formattedDate} at ${slot}`)
                 }
                 else {
-                    alert(`alredy have and appoinment on ${data.booking?.data} at ${data.booking?.slot}`)
+                    alert(`alredy have and appoinment on ${data.booking?.date} at ${data.booking?.slot}`)
                 }
+                refetch();
                 setTitment(null);
             })
-
-
-
     }
 
     return (
