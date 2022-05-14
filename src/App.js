@@ -2,6 +2,9 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './Components/Pages/About/About';
 import AppoinmentAll from './Components/Pages/Appoinment/AppoinmentAll';
+import DeashBoard from './Components/Pages/DeashBoard/DeashBoard';
+import MyApointment from './Components/Pages/DeashBoard/MyApointment';
+import MyReview from './Components/Pages/DeashBoard/MyReview';
 import Login from './Components/Pages/Login/Login';
 import SignUp from './Components/Pages/Login/SignUp';
 import Home from './Components/Shared/Home/Home';
@@ -24,6 +27,17 @@ function App() {
             <AppoinmentAll></AppoinmentAll>
           </RequirAuth>
         }></Route>
+
+        <Route path='/deashboard' element={
+          <RequirAuth>
+            <DeashBoard>
+            </DeashBoard>
+          </RequirAuth>
+        }>
+          <Route index element={<MyApointment></MyApointment>}></Route>
+          <Route path='myreview' element={<MyReview></MyReview>}></Route>
+        </Route>
+
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/*' element={<NoteFound></NoteFound>}></Route>
