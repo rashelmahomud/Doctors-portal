@@ -7,12 +7,45 @@ const BookingModal = ({ date, titment, setTitment }) => {
     const { _id, name, slots } = titment;
     const [user, loading, error] = useAuthState(auth);
 
+    const formattedDate = format(date, 'pp');
     const handelSubmite = event => {
         event.preventDefault();
         const slot = event.target.slot.value;
-        console.log(_id,slot,name);
-        setTitment();
+
+        const booking = {
+            treatmentId: _id,
+            treatment: name,
+            data: formattedDate,
+            slot,
+            patient: user.email,
+            patientName: user.displayName,
+            number: event.target.number.value
+        }
+
+        fetch('http://localhost:5000/booking', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+
+                if (data.success) {
+                    alert(`appoinment is set, ${formattedDate} at ${slot}`)
+                }
+                else {
+                    alert(`alredy have and appoinment on ${data.booking?.data} at ${data.booking?.slot}`)
+                }
+                setTitment(null);
+            })
+
+
+
     }
+
     return (
         <div>
             <input type="checkbox" id="Booking-modal" className="modal-toggle" />
@@ -24,10 +57,10 @@ const BookingModal = ({ date, titment, setTitment }) => {
                     <form onSubmit={handelSubmite}>
                         <input type="text" value={format(date, 'PP')} className="input input-bordered w-full max-w-xs my-3 required" />
                         <select name='slot' className="select select-bordered w-full max-w-xs">
-                        
+
                             {
                                 //ai khane index dawar mane hole id nai tai ababe index diya error handel korte hobe.
-                                slots.map((slot,index) => <option key={index} value={slot}>{slot}</option>)
+                                slots.map((slot, index) => <option key={index} value={slot}>{slot}</option>)
                             }
                         </select>
 
