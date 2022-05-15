@@ -1,22 +1,34 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 
 const MyApointment = () => {
     const [apoinment, setApoinment] = useState([]);
     const [user] = useAuthState(auth);
 
+    const navigate = useNavigate();
+
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/booking?patient=${user.email}`,{
+        fetch(`http://localhost:5000/booking?patient=${user.email}`, {
             method: 'GET',
-            headers:{
+            headers: {
                 'authorization': `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => {
-                console.log('red',res);
+                console.log('red', res);
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+
+                    navigate('/');
+
+                }
+
                 return res.json()
             })
 
@@ -26,7 +38,7 @@ const MyApointment = () => {
             })
 
 
-            
+
     }, [user])
 
     return (
