@@ -9,13 +9,24 @@ const MyApointment = () => {
 
     useEffect(() => {
 
+        fetch(`http://localhost:5000/booking?patient=${user.email}`,{
+            method: 'GET',
+            headers:{
+                'authorization': `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                console.log('red',res);
+                return res.json()
+            })
+
+            .then(data => {
+
+                setApoinment(data);
+            })
 
 
-        fetch(`http://localhost:5000/booking?patient=${user.email}`)
-            .then(res => res.json())
-            .then(data => setApoinment(data))
-
-
+            
     }, [user])
 
     return (
@@ -35,7 +46,7 @@ const MyApointment = () => {
                     </thead>
                     <tbody>
                         {
-                            apoinment.map((a,index) => <tr>
+                            apoinment.map((a, index) => <tr>
                                 <th>{index + 1}</th>
                                 <td>{a.treatment}</td>
                                 <td>{a.date}</td>

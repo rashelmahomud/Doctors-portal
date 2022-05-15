@@ -4,6 +4,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useToken from '../../../hooks/useToken';
 import Loading from '../../Shared/Loading/Loading';
 
 const SignUp = () => {
@@ -19,13 +20,16 @@ const SignUp = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
 
 
+    const [token] = useToken(user || gUser);
+
     const navigate = useNavigate();
     const [updateProfile, updating, UpdateError] = useUpdateProfile(auth);
 
     let loginError;
 
-    if (gUser) {
-        console.log(gUser);
+    if (token) {
+        navigate('/home');
+
     };
     if (gLoading || loading || updating) {
         return <Loading></Loading>
@@ -39,7 +43,8 @@ const SignUp = () => {
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
-        navigate('/home');
+        // navigate('/home');
+        console.log('update done');
 
     };
 
