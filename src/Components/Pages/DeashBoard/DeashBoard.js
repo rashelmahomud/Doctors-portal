@@ -18,7 +18,9 @@ const DeashBoard = () => {
                     <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
 
                         <li><Link to='/deashboard'>Deash Board</Link></li>
-                        <li><Link to='myreview'>My Reviews</Link></li>
+                        <li><Link to='/deashboard/myreview'>My Reviews</Link></li>
+                        <li><Link to='/deashboard/history'>My history</Link></li>
+                        <li><Link to='/deashboard/users'>All Users</Link></li>
                     </ul>
 
                 </div>

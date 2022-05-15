@@ -3,8 +3,10 @@ import './App.css';
 import About from './Components/Pages/About/About';
 import AppoinmentAll from './Components/Pages/Appoinment/AppoinmentAll';
 import DeashBoard from './Components/Pages/DeashBoard/DeashBoard';
+import History from './Components/Pages/DeashBoard/History';
 import MyApointment from './Components/Pages/DeashBoard/MyApointment';
 import MyReview from './Components/Pages/DeashBoard/MyReview';
+import Users from './Components/Pages/DeashBoard/Users';
 import Login from './Components/Pages/Login/Login';
 import SignUp from './Components/Pages/Login/SignUp';
 import Home from './Components/Shared/Home/Home';
@@ -36,6 +38,8 @@ function App() {
         }>
           <Route index element={<MyApointment></MyApointment>}></Route>
           <Route path='myreview' element={<MyReview></MyReview>}></Route>
+          <Route path='users' element={<Users></Users>}></Route>
+          <Route path='history' element={<History></History>}></Route>
         </Route>
 
         <Route path='/login' element={<Login></Login>}></Route>
