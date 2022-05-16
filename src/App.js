@@ -12,6 +12,7 @@ import SignUp from './Components/Pages/Login/SignUp';
 import Home from './Components/Shared/Home/Home';
 import Navber from './Components/Shared/Navber/Navber';
 import NoteFound from './Components/Shared/NoteFound/NoteFound';
+import RequirAdmin from './Components/Shared/RequirAuth/RequirAdmin';
 import RequirAuth from './Components/Shared/RequirAuth/RequirAuth';
 
 
@@ -38,7 +39,7 @@ function App() {
         }>
           <Route index element={<MyApointment></MyApointment>}></Route>
           <Route path='myreview' element={<MyReview></MyReview>}></Route>
-          <Route path='users' element={<Users></Users>}></Route>
+          <Route path='users' element={<RequirAdmin><Users></Users></RequirAdmin>}></Route>
           <Route path='history' element={<History></History>}></Route>
         </Route>
 
