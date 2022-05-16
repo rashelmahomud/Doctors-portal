@@ -1,7 +1,12 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
+import auth from '../../../firebase.init';
+import useAdmin from '../../../hooks/useAdmin';
 
 const DeashBoard = () => {
+    // const [user] = useAuthState(auth);
+    // const [admin] = useAdmin(user);
     return (
         <div>
 
@@ -20,7 +25,8 @@ const DeashBoard = () => {
                         <li><Link to='/deashboard'>Deash Board</Link></li>
                         <li><Link to='/deashboard/myreview'>My Reviews</Link></li>
                         <li><Link to='/deashboard/history'>My history</Link></li>
-                        <li><Link to='/deashboard/users'>All Users</Link></li>
+                       <li><Link to='/deashboard/users'>All Users</Link></li>
+                        {/* { admin && <li><Link to='/deashboard/users'>All Users</Link></li>} */}
                     </ul>
 
                 </div>
