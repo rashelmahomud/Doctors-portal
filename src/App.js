@@ -5,6 +5,7 @@ import AppoinmentAll from './Components/Pages/Appoinment/AppoinmentAll';
 import AddDoctor from './Components/Pages/DeashBoard/AddDoctor';
 import DeashBoard from './Components/Pages/DeashBoard/DeashBoard';
 import History from './Components/Pages/DeashBoard/History';
+import ManageDoctors from './Components/Pages/DeashBoard/ManageDoctors';
 import MyApointment from './Components/Pages/DeashBoard/MyApointment';
 import MyReview from './Components/Pages/DeashBoard/MyReview';
 import Users from './Components/Pages/DeashBoard/Users';
@@ -42,6 +43,7 @@ function App() {
           <Route path='myreview' element={<MyReview></MyReview>}></Route>
           <Route path='users' element={<RequirAdmin><Users></Users></RequirAdmin>}></Route>
           <Route path='addDoctor' element={<RequirAdmin><AddDoctor></AddDoctor></RequirAdmin>}></Route>
+          <Route path='manageDoctor' element={<RequirAdmin><ManageDoctors></ManageDoctors></RequirAdmin>}></Route>
           <Route path='history' element={<History></History>}></Route>
         </Route>
 

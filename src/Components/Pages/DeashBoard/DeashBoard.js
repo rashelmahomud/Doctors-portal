@@ -29,6 +29,7 @@ const DeashBoard = () => {
                         { admin && <>
                             <li><Link to='/deashboard/users'>All Users</Link></li>
                             <li><Link to='/deashboard/addDoctor'>Add New Doctor</Link></li>
+                            <li><Link to='/deashboard/manageDoctor'>Manage Doctors</Link></li>
                         </>}
                     </ul>
 
