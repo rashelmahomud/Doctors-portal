@@ -1,12 +1,38 @@
 import { async } from '@firebase/util';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ apoinment }) => {
 
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('');
+    const [clientSecret, setClientSecret] = useState('');
+
+    const { price } = apoinment;
+
+    useEffect(() => {
+        fetch('http://localhost:5000/create-payment-intent', {
+
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${localStorage.getItem('accessToken')}`
+
+            },
+            body: JSON.stringify({price })
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.clientSecret){
+                    setClientSecret(data.clientSecret);
+                }
+
+            });
+
+    }, [price])
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -54,7 +80,7 @@ const CheckoutForm = () => {
                         },
                     }}
                 />
-                <button className='btn btn-primary mt-5 text-white ' type="submit" disabled={!stripe}>
+                <button className='btn btn-primary mt-5 text-white ' type="submit" disabled={!stripe || !clientSecret}>
                     Send Pay
                 </button>
             </form>
