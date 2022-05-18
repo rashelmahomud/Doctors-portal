@@ -8,10 +8,11 @@ const CheckoutForm = ({ apoinment }) => {
     const elements = useElements();
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
+    const [procacing, setProcacing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
-    const { price, treatment, patient, patientName } = apoinment;
+    const { _id, price, treatment, patient, patientName } = apoinment;
 
     useEffect(() => {
         fetch('http://localhost:5000/create-payment-intent', {
@@ -58,6 +59,7 @@ const CheckoutForm = ({ apoinment }) => {
 
         setCardError(error?.message || '');
         setSuccess('');
+        setProcacing(true);
 
         //confirm  payment card
 
@@ -76,12 +78,40 @@ const CheckoutForm = ({ apoinment }) => {
 
         if (intentError) {
             setCardError(intentError?.message);
+            setProcacing(false);
         }
         else {
             setCardError('');
             console.log(paymentIntent);
             setTransactionId(paymentIntent.id);
             setSuccess('Congratulations ! Your payments is completed');
+
+
+            // payment 
+            const payment = {
+                appointment: _id,
+                name: patientName,
+                problems: treatment,
+                transactionId: paymentIntent.id
+            }
+
+            fetch(`http://localhost:5000/booking/${_id}`, {
+
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `bearer ${localStorage.getItem('accessToken')}`
+
+                },
+                body: JSON.stringify(payment)
+
+
+            }).then(res => res.json())
+                .then(data => {
+                    setProcacing(false);
+                    console.log(data);
+                })
+
         }
 
 
